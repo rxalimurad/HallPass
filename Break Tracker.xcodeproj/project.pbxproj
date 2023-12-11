@@ -13,13 +13,28 @@
 		AA8958932B238CE400FA3B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8958912B238CE400FA3B22 /* Main.storyboard */; };
 		AA8958982B238CE500FA3B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA8958972B238CE500FA3B22 /* Assets.xcassets */; };
 		AA89589B2B238CE500FA3B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8958992B238CE500FA3B22 /* LaunchScreen.storyboard */; };
-		AA8958AB2B23914B00FA3B22 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8958AA2B23914B00FA3B22 /* TeacherViewController.swift */; };
+		AA8958AB2B23914B00FA3B22 /* PeriodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8958AA2B23914B00FA3B22 /* PeriodsViewController.swift */; };
 		AA8958AD2B23916700FA3B22 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8958AC2B23916700FA3B22 /* SettingsViewController.swift */; };
 		FA4645892B2666AC004C7483 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FA4645882B2666AC004C7483 /* Realm */; };
 		FA46458B2B2666AC004C7483 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA46458A2B2666AC004C7483 /* RealmSwift */; };
 		FA46458D2B266721004C7483 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46458C2B266721004C7483 /* Models.swift */; };
 		FA46458F2B26676C004C7483 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46458E2B26676C004C7483 /* DBManager.swift */; };
 		FA4645912B26D72F004C7483 /* PeriodDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4645902B26D72F004C7483 /* PeriodDetailsViewController.swift */; };
+		FA846BF12B279CA20017BEE7 /* ViewSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BF02B279CA20017BEE7 /* ViewSessionsViewController.swift */; };
+		FA846BF42B27A4080017BEE7 /* ViewSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BF32B27A4080017BEE7 /* ViewSessionCell.swift */; };
+		FA846BFD2B27AE3D0017BEE7 /* PasscodeKitChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BF72B27AE3D0017BEE7 /* PasscodeKitChange.swift */; };
+		FA846BFE2B27AE3D0017BEE7 /* PasscodeKitCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BF82B27AE3D0017BEE7 /* PasscodeKitCreate.swift */; };
+		FA846BFF2B27AE3D0017BEE7 /* PasscodeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BF92B27AE3D0017BEE7 /* PasscodeKit.swift */; };
+		FA846C002B27AE3D0017BEE7 /* PasscodeKitText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BFA2B27AE3D0017BEE7 /* PasscodeKitText.swift */; };
+		FA846C012B27AE3D0017BEE7 /* PasscodeKitVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BFB2B27AE3D0017BEE7 /* PasscodeKitVerify.swift */; };
+		FA846C022B27AE3D0017BEE7 /* PasscodeKitRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846BFC2B27AE3D0017BEE7 /* PasscodeKitRemove.swift */; };
+		FA846C052B27BD6E0017BEE7 /* PDFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA846C042B27BD6E0017BEE7 /* PDFUtil.swift */; };
+		FA9AE09B2B2778B100615DC0 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE09A2B2778B100615DC0 /* Optional.swift */; };
+		FA9AE09D2B277E2A00615DC0 /* SignoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE09C2B277E2A00615DC0 /* SignoutViewController.swift */; };
+		FA9AE0A02B2782E800615DC0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE09F2B2782E800615DC0 /* Constants.swift */; };
+		FA9AE0A22B27837700615DC0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A12B27837700615DC0 /* Date.swift */; };
+		FA9AE0A42B278B9000615DC0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A32B278B9000615DC0 /* UserDefaults.swift */; };
+		FA9AE0A72B27918700615DC0 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */; };
 		FAE11F1E2B274EA000611033 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
@@ -32,11 +47,26 @@
 		AA8958972B238CE500FA3B22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA89589A2B238CE500FA3B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA89589C2B238CE500FA3B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA8958AA2B23914B00FA3B22 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		AA8958AA2B23914B00FA3B22 /* PeriodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodsViewController.swift; sourceTree = "<group>"; };
 		AA8958AC2B23916700FA3B22 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA46458C2B266721004C7483 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FA46458E2B26676C004C7483 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		FA4645902B26D72F004C7483 /* PeriodDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDetailsViewController.swift; sourceTree = "<group>"; };
+		FA846BF02B279CA20017BEE7 /* ViewSessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSessionsViewController.swift; sourceTree = "<group>"; };
+		FA846BF32B27A4080017BEE7 /* ViewSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSessionCell.swift; sourceTree = "<group>"; };
+		FA846BF72B27AE3D0017BEE7 /* PasscodeKitChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKitChange.swift; sourceTree = "<group>"; };
+		FA846BF82B27AE3D0017BEE7 /* PasscodeKitCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKitCreate.swift; sourceTree = "<group>"; };
+		FA846BF92B27AE3D0017BEE7 /* PasscodeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKit.swift; sourceTree = "<group>"; };
+		FA846BFA2B27AE3D0017BEE7 /* PasscodeKitText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKitText.swift; sourceTree = "<group>"; };
+		FA846BFB2B27AE3D0017BEE7 /* PasscodeKitVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKitVerify.swift; sourceTree = "<group>"; };
+		FA846BFC2B27AE3D0017BEE7 /* PasscodeKitRemove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKitRemove.swift; sourceTree = "<group>"; };
+		FA846C042B27BD6E0017BEE7 /* PDFUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFUtil.swift; sourceTree = "<group>"; };
+		FA9AE09A2B2778B100615DC0 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		FA9AE09C2B277E2A00615DC0 /* SignoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutViewController.swift; sourceTree = "<group>"; };
+		FA9AE09F2B2782E800615DC0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FA9AE0A12B27837700615DC0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		FA9AE0A32B278B9000615DC0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +102,14 @@
 		AA89588A2B238CE400FA3B22 /* Hall Pass */ = {
 			isa = PBXGroup;
 			children = (
+				FA846C032B27BD560017BEE7 /* Utils */,
 				AA8958A32B2390AE00FA3B22 /* Application */,
+				FA9AE0992B27789C00615DC0 /* Extensions */,
+				FA9AE09E2B2782CC00615DC0 /* Constants */,
 				AA8958A52B2390DB00FA3B22 /* Modules */,
 				AA8958A42B2390C500FA3B22 /* Resources */,
 				AA8958A22B23908E00FA3B22 /* Storage */,
+				FA846BF52B27AE1D0017BEE7 /* Venders */,
 			);
 			path = "Hall Pass";
 			sourceTree = "<group>";
@@ -112,7 +146,9 @@
 			children = (
 				AA8958A62B2390EB00FA3B22 /* View */,
 				AA8958A72B2390FE00FA3B22 /* Student */,
-				AA8958A82B23910600FA3B22 /* Teacher */,
+				FA9AE0A52B27916B00615DC0 /* Teachers */,
+				AA8958A82B23910600FA3B22 /* Periods */,
+				FA846BEF2B279C830017BEE7 /* ViewSessions */,
 				AA8958A92B23911500FA3B22 /* Settings */,
 			);
 			path = Modules;
@@ -131,17 +167,18 @@
 			isa = PBXGroup;
 			children = (
 				AA89588F2B238CE400FA3B22 /* StudentViewController.swift */,
+				FA9AE09C2B277E2A00615DC0 /* SignoutViewController.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
 		};
-		AA8958A82B23910600FA3B22 /* Teacher */ = {
+		AA8958A82B23910600FA3B22 /* Periods */ = {
 			isa = PBXGroup;
 			children = (
-				AA8958AA2B23914B00FA3B22 /* TeacherViewController.swift */,
+				AA8958AA2B23914B00FA3B22 /* PeriodsViewController.swift */,
 				FA4645902B26D72F004C7483 /* PeriodDetailsViewController.swift */,
 			);
-			path = Teacher;
+			path = Periods;
 			sourceTree = "<group>";
 		};
 		AA8958A92B23911500FA3B22 /* Settings */ = {
@@ -150,6 +187,70 @@
 				AA8958AC2B23916700FA3B22 /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		FA846BEF2B279C830017BEE7 /* ViewSessions */ = {
+			isa = PBXGroup;
+			children = (
+				FA846BF02B279CA20017BEE7 /* ViewSessionsViewController.swift */,
+				FA846BF32B27A4080017BEE7 /* ViewSessionCell.swift */,
+			);
+			path = ViewSessions;
+			sourceTree = "<group>";
+		};
+		FA846BF52B27AE1D0017BEE7 /* Venders */ = {
+			isa = PBXGroup;
+			children = (
+				FA846BF62B27AE3D0017BEE7 /* PasscodeKit */,
+			);
+			path = Venders;
+			sourceTree = "<group>";
+		};
+		FA846BF62B27AE3D0017BEE7 /* PasscodeKit */ = {
+			isa = PBXGroup;
+			children = (
+				FA846BF72B27AE3D0017BEE7 /* PasscodeKitChange.swift */,
+				FA846BF82B27AE3D0017BEE7 /* PasscodeKitCreate.swift */,
+				FA846BF92B27AE3D0017BEE7 /* PasscodeKit.swift */,
+				FA846BFA2B27AE3D0017BEE7 /* PasscodeKitText.swift */,
+				FA846BFB2B27AE3D0017BEE7 /* PasscodeKitVerify.swift */,
+				FA846BFC2B27AE3D0017BEE7 /* PasscodeKitRemove.swift */,
+			);
+			path = PasscodeKit;
+			sourceTree = "<group>";
+		};
+		FA846C032B27BD560017BEE7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA846C042B27BD6E0017BEE7 /* PDFUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FA9AE0992B27789C00615DC0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA9AE09A2B2778B100615DC0 /* Optional.swift */,
+				FA9AE0A12B27837700615DC0 /* Date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA9AE09E2B2782CC00615DC0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				FA9AE09F2B2782E800615DC0 /* Constants.swift */,
+				FA9AE0A32B278B9000615DC0 /* UserDefaults.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		FA9AE0A52B27916B00615DC0 /* Teachers */ = {
+			isa = PBXGroup;
+			children = (
+				FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */,
+			);
+			path = Teachers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,14 +333,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9AE09D2B277E2A00615DC0 /* SignoutViewController.swift in Sources */,
+				FA846BFF2B27AE3D0017BEE7 /* PasscodeKit.swift in Sources */,
+				FA9AE0A02B2782E800615DC0 /* Constants.swift in Sources */,
 				AA8958902B238CE400FA3B22 /* StudentViewController.swift in Sources */,
-				AA8958AB2B23914B00FA3B22 /* TeacherViewController.swift in Sources */,
+				AA8958AB2B23914B00FA3B22 /* PeriodsViewController.swift in Sources */,
+				FA846BFE2B27AE3D0017BEE7 /* PasscodeKitCreate.swift in Sources */,
+				FA846BFD2B27AE3D0017BEE7 /* PasscodeKitChange.swift in Sources */,
+				FA846C012B27AE3D0017BEE7 /* PasscodeKitVerify.swift in Sources */,
+				FA846C002B27AE3D0017BEE7 /* PasscodeKitText.swift in Sources */,
+				FA9AE0A42B278B9000615DC0 /* UserDefaults.swift in Sources */,
+				FA846C022B27AE3D0017BEE7 /* PasscodeKitRemove.swift in Sources */,
+				FA9AE0A72B27918700615DC0 /* TeacherViewController.swift in Sources */,
+				FA9AE09B2B2778B100615DC0 /* Optional.swift in Sources */,
+				FA846BF12B279CA20017BEE7 /* ViewSessionsViewController.swift in Sources */,
 				AA89588C2B238CE400FA3B22 /* AppDelegate.swift in Sources */,
 				FA4645912B26D72F004C7483 /* PeriodDetailsViewController.swift in Sources */,
+				FA9AE0A22B27837700615DC0 /* Date.swift in Sources */,
+				FA846C052B27BD6E0017BEE7 /* PDFUtil.swift in Sources */,
 				AA89588E2B238CE400FA3B22 /* SceneDelegate.swift in Sources */,
 				AA8958AD2B23916700FA3B22 /* SettingsViewController.swift in Sources */,
 				FA46458D2B266721004C7483 /* Models.swift in Sources */,
 				FA46458F2B26676C004C7483 /* DBManager.swift in Sources */,
+				FA846BF42B27A4080017BEE7 /* ViewSessionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +515,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,7 +544,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

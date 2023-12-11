@@ -7,16 +7,26 @@
 
 import UIKit
 
-class TeacherViewController: UIViewController {
+class PeriodsViewController: UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Teacher"
+        self.navigationItem.title = "Periods"
         addDBObserver()
         tableView.delegate = self
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         tableView.dataSource = self
+        let editBtn = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(OnEditButton))
+        navigationItem.rightBarButtonItem = editBtn
+        
+        
     }
+    @objc func OnEditButton() {
+        tableView.isEditing = !tableView.isEditing
+        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Done" : "Edit"
+        }
     
     private func addPeriodInDB(period: String) {
         RealmManager.shared.addPeriod(periodName: period)
@@ -51,7 +61,7 @@ class TeacherViewController: UIViewController {
     }
 }
 
-extension TeacherViewController: UITableViewDelegate, UITableViewDataSource {
+extension PeriodsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell", for: indexPath)
         
@@ -64,6 +74,20 @@ extension TeacherViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let periods = RealmManager.shared.getPeriods(), indexPath.row < periods.count {
+                RealmManager.shared.deletePeriod(periodID: periods[indexPath.row].id)
+            }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete" 
+    }
+    
+
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         RealmManager.shared.getPeriods()?.count ?? 0
@@ -87,6 +111,6 @@ extension TeacherViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 //MARK:- Programatically View
-extension TeacherViewController {
+extension PeriodsViewController {
     
 }

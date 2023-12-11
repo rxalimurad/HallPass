@@ -6,24 +6,40 @@
 //
 
 import UIKit
-
 class SettingsViewController: UITableViewController {
 
+    
+    @IBOutlet var passCodeSwitch: UISwitch!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = "Settings"
+        self.navigationItem.title = self.title
+        passCodeSwitch.isOn = PasscodeKit.enabled()
+ 
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func onValueChange(_ sender: Any) {
+        if passCodeSwitch.isOn {
+            PasscodeKit.createPasscode(self)
+        } else {
+            PasscodeKit.removePasscode(self)
+        }
     }
-    */
+    
+   
+}
 
+extension SettingsViewController: PasscodeKitDelegate {
+    func passcodeEnteredSuccessfully() {
+        passCodeSwitch.isOn = PasscodeKit.enabled()
+    }
+    func passcodeRemoved() {
+        passCodeSwitch.isOn = PasscodeKit.enabled()
+        
+    }
+    func onCancel() {
+        passCodeSwitch.isOn = PasscodeKit.enabled()
+    }
 }

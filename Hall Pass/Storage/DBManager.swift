@@ -6,6 +6,7 @@
 //
 
 import RealmSwift
+import Foundation
 
 class RealmManager {
     static let shared = RealmManager()
@@ -42,7 +43,31 @@ class RealmManager {
             realm.add(newPeriod)
         }
     }
-    
+    func deletePeriod(periodID: String) {
+        if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
+            do {
+                try realm.write {
+                    realm.delete(period.students) // Delete students associated with the period
+                    realm.delete(period) // Delete the period itself
+                }
+            } catch {
+                print("Error deleting period: \(error)")
+            }
+        } else {
+            print("Period not found")
+            // Handle case when the specified period is not found
+        }
+    }
+    func deleteStudent(student: Student) {
+        do {
+            try realm.write {
+                realm.delete(student)
+            }
+        } catch {
+            print("Error deleting student: \(error)")
+        }
+    }
+
     // Function to add a student to a specific period
     func addStudentToPeriod(periodID: String, studentName: String) {
         if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
@@ -69,5 +94,43 @@ class RealmManager {
         }
         return nil
     }
+    
+    
+    func startSession(student: Student, signOut: Date, period: Period) -> Session{
+        try! realm.write {
+            let session = Session()
+            session.signOut = signOut
+            session.student = student
+            session.period = period
+            realm.add(session)
+            UserDefaults.standard.sessionID = session.sessionID
+            return session
+        }
+    }
+    
+    func endSession(sessionID: String, signin: Date) {
+        let sessionToUpdate = realm.object(ofType: Session.self, forPrimaryKey: sessionID)
+        
+        if let session = sessionToUpdate {
+            do {
+                try realm.write {
+                    session.signin = signin
+                    realm.add(session, update: .modified)
+                    UserDefaults.standard.sessionID = nil
+                }
+                print("Session signOut updated successfully")
+            } catch {
+                print("Error updating session signOut: \(error)")
+            }
+        } else {
+            print("Session not found")
+        }
+    }
+    
+    func getSessions() -> Results<Session>? {
+        let realm = try! Realm()
+        return realm.objects(Session.self)
+    }
+
 }
 

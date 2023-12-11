@@ -22,13 +22,19 @@ class PeriodDetailsViewController: UIViewController, UITableViewDataSource, UITa
         // Set up table view delegate and data source
         tableView.dataSource = self
         tableView.delegate = self
-        
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        let editBtn = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(OnEditButton))
+        navigationItem.rightBarButtonItem = editBtn
         // Fetch students for the selected period
         if let period = period {
             students = period.students
         }
         addDBObserver()
     }
+    @objc func OnEditButton() {
+        tableView.isEditing = !tableView.isEditing
+        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Done" : "Edit"
+        }
     private func addDBObserver() {
         RealmManager.shared.observeRealmChanges(Period.self) { [weak self] periods in
             self?.tableView.reloadData()
@@ -63,6 +69,19 @@ class PeriodDetailsViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     // MARK: - UITableViewDataSource
+    
+    internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let student = students?[indexPath.row] {
+                RealmManager.shared.deleteStudent(student: student)
+            }
+            
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete"
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return students?.count ?? 0

@@ -18,3 +18,13 @@ class Student: Object {
     @Persisted var studentID: String = UUID().uuidString
     @Persisted var studentName: String = ""
 }
+
+
+class Session: Object {
+    @Persisted(primaryKey: true) var sessionID: String = UUID().uuidString
+    @Persisted var signOut = Date()
+    @Persisted var signin = Date()
+    @Persisted var student: Student?
+    @Persisted var period: Period?
+   
+}
