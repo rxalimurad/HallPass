@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA8958882B238CE400FA3B22 /* Hall Pass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hall Pass.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA8958882B238CE400FA3B22 /* Break Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Break Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA89588B2B238CE400FA3B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA89588D2B238CE400FA3B22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AA89588F2B238CE400FA3B22 /* StudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		AA8958892B238CE400FA3B22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA8958882B238CE400FA3B22 /* Hall Pass.app */,
+				AA8958882B238CE400FA3B22 /* Break Tracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA8958872B238CE400FA3B22 /* Hall Pass */ = {
+		AA8958872B238CE400FA3B22 /* Break Tracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA89589F2B238CE500FA3B22 /* Build configuration list for PBXNativeTarget "Hall Pass" */;
+			buildConfigurationList = AA89589F2B238CE500FA3B22 /* Build configuration list for PBXNativeTarget "Break Tracker" */;
 			buildPhases = (
 				AA8958842B238CE400FA3B22 /* Sources */,
 				AA8958852B238CE400FA3B22 /* Frameworks */,
@@ -167,14 +167,14 @@
 			);
 			dependencies = (
 			);
-			name = "Hall Pass";
+			name = "Break Tracker";
 			packageProductDependencies = (
 				FA4645882B2666AC004C7483 /* Realm */,
 				FA46458A2B2666AC004C7483 /* RealmSwift */,
 				FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */,
 			);
 			productName = "Hall Pass";
-			productReference = AA8958882B238CE400FA3B22 /* Hall Pass.app */;
+			productReference = AA8958882B238CE400FA3B22 /* Break Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA8958832B238CE400FA3B22 /* Build configuration list for PBXProject "Hall Pass" */;
+			buildConfigurationList = AA8958832B238CE400FA3B22 /* Build configuration list for PBXProject "Break Tracker" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -209,7 +209,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA8958872B238CE400FA3B22 /* Hall Pass */,
+				AA8958872B238CE400FA3B22 /* Break Tracker */,
 			);
 		};
 /* End PBXProject section */
@@ -445,7 +445,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA8958832B238CE400FA3B22 /* Build configuration list for PBXProject "Hall Pass" */ = {
+		AA8958832B238CE400FA3B22 /* Build configuration list for PBXProject "Break Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA89589D2B238CE500FA3B22 /* Debug */,
@@ -454,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA89589F2B238CE500FA3B22 /* Build configuration list for PBXNativeTarget "Hall Pass" */ = {
+		AA89589F2B238CE500FA3B22 /* Build configuration list for PBXNativeTarget "Break Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA8958A02B238CE500FA3B22 /* Debug */,
