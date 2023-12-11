@@ -9,9 +9,9 @@ import RealmSwift
 import Foundation
 
 class Period: Object {
-    @Persisted var periodID: String = UUID().uuidString
+    @Persisted(primaryKey: true) var id: String = UUID().uuidString // Primary key
     @Persisted var periodName: String = ""
-    let students = List<Student>()
+    @Persisted var students = List<Student>()
 }
 
 class Student: Object {

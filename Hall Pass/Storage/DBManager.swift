@@ -11,28 +11,28 @@ class RealmManager {
     static let shared = RealmManager()
     private let realm = try! Realm()
     private var notificationTokens: [NotificationToken] = []
-
+    
     func observeRealmChanges<T: Object>(_ objectType: T.Type, completion: @escaping ([T]) -> Void) {
-            let realm = try! Realm()
-            let results = realm.objects(objectType)
-            
-            let token = results.observe { changes in
-                switch changes {
-                case .initial(let initialResults):
-                    completion(Array(initialResults))
-                case .update(let updatedResults, _, _, _):
-                    completion(Array(updatedResults))
-                case .error(let error):
-                    print("Error observing changes: \(error)")
-                }
+        let realm = try! Realm()
+        let results = realm.objects(objectType)
+        
+        let token = results.observe { changes in
+            switch changes {
+            case .initial(let initialResults):
+                completion(Array(initialResults))
+            case .update(let updatedResults, _, _, _):
+                completion(Array(updatedResults))
+            case .error(let error):
+                print("Error observing changes: \(error)")
             }
-            notificationTokens.append(token)
         }
-
-        func stopObserving() {
-            notificationTokens.forEach { $0.invalidate() }
-            notificationTokens.removeAll()
-        }
+        notificationTokens.append(token)
+    }
+    
+    func stopObserving() {
+        notificationTokens.forEach { $0.invalidate() }
+        notificationTokens.removeAll()
+    }
     
     // Function to add a new period
     func addPeriod(periodName: String) {
@@ -42,7 +42,7 @@ class RealmManager {
             realm.add(newPeriod)
         }
     }
-
+    
     // Function to add a student to a specific period
     func addStudentToPeriod(periodID: String, studentName: String) {
         if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
@@ -58,16 +58,16 @@ class RealmManager {
         }
     }
     func getPeriods() -> Results<Period>? {
-            let realm = try! Realm()
-            return realm.objects(Period.self)
+        let realm = try! Realm()
+        return realm.objects(Period.self)
+    }
+    
+    func getStudents(for periodID: String) -> List<Student>? {
+        let realm = try! Realm()
+        if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
+            return period.students
         }
-
-        func getStudents(for periodID: String) -> List<Student>? {
-            let realm = try! Realm()
-            if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
-                return period.students
-            }
-            return nil
-        }
+        return nil
+    }
 }
 

@@ -19,6 +19,8 @@
 		FA46458B2B2666AC004C7483 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA46458A2B2666AC004C7483 /* RealmSwift */; };
 		FA46458D2B266721004C7483 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46458C2B266721004C7483 /* Models.swift */; };
 		FA46458F2B26676C004C7483 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA46458E2B26676C004C7483 /* DBManager.swift */; };
+		FA4645912B26D72F004C7483 /* PeriodDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4645902B26D72F004C7483 /* PeriodDetailsViewController.swift */; };
+		FAE11F1E2B274EA000611033 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,7 @@
 		AA8958AC2B23916700FA3B22 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA46458C2B266721004C7483 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FA46458E2B26676C004C7483 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		FA4645902B26D72F004C7483 /* PeriodDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			files = (
 				FA46458B2B2666AC004C7483 /* RealmSwift in Frameworks */,
 				FA4645892B2666AC004C7483 /* Realm in Frameworks */,
+				FAE11F1E2B274EA000611033 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				AA8958AA2B23914B00FA3B22 /* TeacherViewController.swift */,
+				FA4645902B26D72F004C7483 /* PeriodDetailsViewController.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			packageProductDependencies = (
 				FA4645882B2666AC004C7483 /* Realm */,
 				FA46458A2B2666AC004C7483 /* RealmSwift */,
+				FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */,
 			);
 			productName = "Hall Pass";
 			productReference = AA8958882B238CE400FA3B22 /* Hall Pass.app */;
@@ -197,6 +203,7 @@
 			mainGroup = AA89587F2B238CE400FA3B22;
 			packageReferences = (
 				FA4645872B2666AC004C7483 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				FAE11F1C2B274EA000611033 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = AA8958892B238CE400FA3B22 /* Products */;
 			projectDirPath = "";
@@ -228,6 +235,7 @@
 				AA8958902B238CE400FA3B22 /* StudentViewController.swift in Sources */,
 				AA8958AB2B23914B00FA3B22 /* TeacherViewController.swift in Sources */,
 				AA89588C2B238CE400FA3B22 /* AppDelegate.swift in Sources */,
+				FA4645912B26D72F004C7483 /* PeriodDetailsViewController.swift in Sources */,
 				AA89588E2B238CE400FA3B22 /* SceneDelegate.swift in Sources */,
 				AA8958AD2B23916700FA3B22 /* SettingsViewController.swift in Sources */,
 				FA46458D2B266721004C7483 /* Models.swift in Sources */,
@@ -466,6 +474,14 @@
 				kind = branch;
 			};
 		};
+		FAE11F1C2B274EA000611033 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.16;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -478,6 +494,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FA4645872B2666AC004C7483 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAE11F1C2B274EA000611033 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
