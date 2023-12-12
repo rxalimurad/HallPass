@@ -69,58 +69,131 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
         
         alert.addAction(UIAlertAction(title: "Current Month", style: .default , handler:{ (_) in
             print("User clicked Current Month")
-            self.downloadPDF()
+            self.downloadPDF(.currentMonth)
         }))
         
         alert.addAction(UIAlertAction(title: "Previous Month", style: .default , handler:{ (_) in
             print("User clicked Previous Month")
+            self.downloadPDF(.lastYear)
         }))
         
         alert.addAction(UIAlertAction(title: "Last 6 Months", style: .default , handler:{ (_) in
             print("User clicked Last 6 Months")
+            self.downloadPDF(.last6Month)
         }))
         
         alert.addAction(UIAlertAction(title: "This Year", style: .default, handler:{ (_) in
             print("User clicked This Year")
+            self.downloadPDF(.thisYear)
         }))
         
         alert.addAction(UIAlertAction(title: "Last Year", style: .default, handler:{ (_) in
             print("User clicked Last Year")
+            self.downloadPDF(.lastYear)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
         
-         alert.popoverPresentationController?.sourceView = self.view
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = self.view // Set the source view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // Set the source rect
+            popoverController.permittedArrowDirections = [] // Optionally set the arrow direction
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
-
     
-    func downloadPDF() {
+    
+    func downloadPDF(_ filter: Filters) {
+        var filteredSessions: [Session] = []
+        
         if let sessions = RealmManager.shared.getSessions() {
-            // Group sessions by sign-out date
-            let groupedByDate = Dictionary(grouping: sessions, by: { $0.signOut.startOfDay })
             
-            // Create GroupedSession objects and populate groupedSessions
-            let groupedSessions = groupedByDate.map { (key, value) in
-                let sortedSessions = value.sorted(by: { $0.signOut > $1.signOut })
-                return GroupedSession(signOutDate: key, sessions: sortedSessions)
-            }.sorted(by: { $0.signOutDate > $1.signOutDate }) // Sort by sign-out date
-            if let pdfData = PDFUtil.createPDF(groupedSessions: groupedSessions, appName: Bundle.main.infoDictionary?["CFBundleName"] as! String) {
-                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                let pdfURL = documentsDirectory.appendingPathComponent("report.pdf")
-                documentController = UIDocumentInteractionController(url: pdfURL)
-                documentController.delegate = self
-                documentController.presentPreview(animated: true)
-                do {
-                    try pdfData.write(to: pdfURL)
-                    print("PDF saved at: \(pdfURL)")
-                } catch {
-                    print("Error saving PDF: \(error)")
+            switch filter {
+            case .currentMonth:
+                // Filter sessions for the current month
+                let currentDate = Date()
+                let calendar = Calendar.current
+                let startOfMonth = calendar.startOfDay(for: calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate))!)
+                let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth)!
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfMonth && session.signOut <= endOfMonth
                 }
-            } else {
-                print("Failed to create PDF")
+                
+            case .lastMonth:
+                // Filter sessions for the last month
+                let currentDate = Date()
+                let calendar = Calendar.current
+                let startOfLastMonth = calendar.date(byAdding: DateComponents(month: -1), to: calendar.startOfDay(for: currentDate))!
+                let endOfLastMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfLastMonth)!
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfLastMonth && session.signOut <= endOfLastMonth
+                }
+            case .last6Month:
+                // Filter sessions for the last 6 months
+                let currentDate = Date()
+                let calendar = Calendar.current
+                guard let startOfLast6Month = calendar.date(byAdding: DateComponents(month: -6), to: calendar.startOfDay(for: currentDate)),
+                      let endOfLast6Month = calendar.date(byAdding: DateComponents(day: -1), to: currentDate) else {
+                    return
+                }
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfLast6Month && session.signOut <= endOfLast6Month
+                }
+                
+            case .thisYear:
+                // Filter sessions for the current year
+                let currentDate = Date()
+                let calendar = Calendar.current
+                let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: currentDate))!
+                let endOfYear = calendar.date(byAdding: DateComponents(year: 1, day: -1), to: startOfYear)!
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfYear && session.signOut <= endOfYear
+                }
+                
+            case .lastYear:
+                // Filter sessions for the last year
+                let currentDate = Date()
+                let calendar = Calendar.current
+                let startOfLastYear = calendar.date(byAdding: DateComponents(year: -1), to: calendar.startOfDay(for: currentDate))!
+                let endOfLastYear = calendar.date(byAdding: DateComponents(day: -1), to: startOfLastYear)!
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfLastYear && session.signOut <= endOfLastYear
+                }
             }
+            
+            
+        }
+        
+        
+        
+        let groupedByDate = Dictionary(grouping: filteredSessions, by: { $0.signOut.startOfDay })
+        
+        // Create GroupedSession objects and populate groupedSessions
+        let groupedSessions = groupedByDate.map { (key, value) in
+            let sortedSessions = value.sorted(by: { $0.signOut > $1.signOut })
+            return GroupedSession(signOutDate: key, sessions: sortedSessions)
+        }.sorted(by: { $0.signOutDate > $1.signOutDate }) // Sort by sign-out date
+        if let pdfData = PDFUtil.createPDF(groupedSessions: groupedSessions, appName: Bundle.main.infoDictionary?["CFBundleName"] as! String) {
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let pdfURL = documentsDirectory.appendingPathComponent("report.pdf")
+            documentController = UIDocumentInteractionController(url: pdfURL)
+            documentController.delegate = self
+            documentController.presentPreview(animated: true)
+            do {
+                try pdfData.write(to: pdfURL)
+                print("PDF saved at: \(pdfURL)")
+            } catch {
+                print("Error saving PDF: \(error)")
+            }
+        } else {
+            print("Failed to create PDF")
         }
     }
 }
+

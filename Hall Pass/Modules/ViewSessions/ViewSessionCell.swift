@@ -22,12 +22,12 @@ class ViewSessionCell: UITableViewCell {
         breakTimeText.addAttributes(boldAttributes, range: NSRange(location: 0, length: 11))
         self.breaktime.attributedText = breakTimeText
         
-        let signInText = NSMutableAttributedString(string: "Signin at: \(sigin)")
-        signInText.addAttributes(boldAttributes, range: NSRange(location: 0, length: 10))
+        let signInText = NSMutableAttributedString(string: "Sign In: \(sigin)")
+        signInText.addAttributes(boldAttributes, range: NSRange(location: 0, length: 9))
         self.signin.attributedText = signInText
         
-        let signOutText = NSMutableAttributedString(string: "Signout at: \(signout)")
-        signOutText.addAttributes(boldAttributes, range: NSRange(location: 0, length: 11))
+        let signOutText = NSMutableAttributedString(string: "Sign Out: \(signout)")
+        signOutText.addAttributes(boldAttributes, range: NSRange(location: 0, length: 10))
         self.signout.attributedText = signOutText
         
         let periodText = NSMutableAttributedString(string: "Period: \(period)")

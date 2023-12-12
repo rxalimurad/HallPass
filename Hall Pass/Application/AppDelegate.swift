@@ -15,9 +15,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            
+            if let sessionID = UserDefaults.standard.sessionID {
+                if let session = RealmManager.shared.getSession(with: sessionID) {
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: SignoutViewController.self)) as! SignoutViewController
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.modalPresentationCapturesStatusBarAppearance = true
+                    vc.signOutDate = session.signOut
+                    vc.selectedStudent = session.student
+                    vc.selectedPeriod = session.period
+                    vc.session = session
+                    self.topViewController()?.present(vc, animated: true)
+                }
+            }
+        }
+        
         return true
     }
     
+    private func topViewController() -> UIViewController? {
+        var keyWindow: UIWindow?
+
+        if #available(iOS 13.0, *) {
+            keyWindow = UIApplication.shared.windows.first { $0.isKeyWindow }
+        } else {
+            keyWindow = UIApplication.shared.keyWindow
+        }
+
+        var viewController = keyWindow?.rootViewController
+        while (viewController?.presentedViewController != nil) {
+            viewController = viewController?.presentedViewController
+        }
+        return viewController
+    }
    
   
     // MARK: UISceneSession Lifecycle

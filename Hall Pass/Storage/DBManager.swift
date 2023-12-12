@@ -127,6 +127,11 @@ class RealmManager {
         }
     }
     
+    func getSession(with sessionID: String) -> Session? {
+        let realm = try! Realm()
+        return realm.object(ofType: Session.self, forPrimaryKey: sessionID)
+    }
+
     func getSessions() -> Results<Session>? {
         let realm = try! Realm()
         return realm.objects(Session.self)

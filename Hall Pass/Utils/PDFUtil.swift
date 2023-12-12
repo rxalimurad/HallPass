@@ -39,7 +39,7 @@ class PDFUtil {
                     // Draw table headers
                     var headerX = CGFloat(50)
                     let headerY = tableStartY
-                    for headerTitle in ["Name", "Period", "Signout", "Signin", "Break Time"] {
+                    for headerTitle in ["Name", "Period", "Sign Out", "Sign In", "Break Time"] {
                         let headerRect = CGRect(x: headerX, y: headerY, width: cellWidth, height: cellHeight)
                         drawCell(text: headerTitle, in: headerRect)
                         headerX += cellWidth

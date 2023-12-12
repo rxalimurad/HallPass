@@ -29,14 +29,30 @@ class SignoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = selectedStudent?.studentName ?? "N/A"
-        if let selectedStudent, let signOutDate, let selectedPeriod {
+        if let signOutDate {
             signoutTime.text = signOutDate.toTimeString()
             date.text = signOutDate.toDateString()
-            session = RealmManager.shared.startSession(student: selectedStudent, signOut: signOutDate, period: selectedPeriod)
             timerr = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
             
         }
+        
+        updateTimerr()
+        
+        let willEnterForeground    = UIApplication.willEnterForegroundNotification
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTimerr), name: willEnterForeground, object: nil)
     }
+    
+    
+    @objc private func updateTimerr() {
+        if let signOutDate {
+            currentTime = Date().startOfDay.addingTimeInterval(Date().timeIntervalSince(signOutDate))
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            let formattedTime = dateFormatter.string(from: currentTime)
+            timer.text = formattedTime
+        }
+    }
+    
     
     @objc func updateTimeLabel() {
         currentTime = currentTime.addingTimeInterval(1.0) // Increment time by 1 second
@@ -56,10 +72,11 @@ class SignoutViewController: UIViewController {
         timerr?.invalidate()
         signinTime.text = time.toTimeString()
         siginView.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+        sigin.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             self.dismiss(animated: true)
             self.delegate?.resetView()
-           
+            
         })
         
     }

@@ -53,6 +53,8 @@ class StudentViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         signoutButton.isEnabled = dataFilled
     }
     override func viewWillAppear(_ animated: Bool) {
+        periodPickerView.reloadAllComponents()
+        studentPickerView.reloadAllComponents()
         periods = RealmManager.shared.getPeriods()
         updateButtonStatus()
     }
@@ -65,6 +67,9 @@ class StudentViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         vc.selectedStudent = selectedStudent
         vc.selectedPeriod = selectedPeriod
         vc.delegate = self
+        if let selectedStudent, let selectedPeriod, let signOutDate = vc.signOutDate {
+            vc.session = RealmManager.shared.startSession(student: selectedStudent, signOut: signOutDate, period: selectedPeriod)
+        }
         self.present(vc, animated: true)
         
     }
@@ -142,10 +147,15 @@ extension StudentViewController: UITextFieldDelegate {
 
 extension StudentViewController: SignoutViewCallback {
     func resetView() {
+        updateButtonStatus()
         selectedPeriod = nil
         selectedStudent = nil
         periodSelector.text = ""
         studentSelector.text = ""
+        periodPickerView.reloadAllComponents()
+        studentPickerView.reloadAllComponents()
+        periodPickerView.selectRow(0, inComponent: 0, animated: false)
+        studentPickerView.selectRow(0, inComponent: 0, animated: false)
       
 
     }
