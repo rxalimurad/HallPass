@@ -97,6 +97,9 @@ class StudentViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         if pickerView == periodPickerView {
             selectedPeriod = periods?[row]
             self.periodSelector.text = selectedPeriod?.periodName
+            studentSelector.text = ""
+            selectedStudent = nil
+            studentPickerView.selectRow(0, inComponent: 0, animated: false)
         } else {
             selectedStudent = selectedPeriod?.students[row]
             self.studentSelector.text = selectedStudent?.studentName
@@ -152,10 +155,10 @@ extension StudentViewController: SignoutViewCallback {
         selectedStudent = nil
         periodSelector.text = ""
         studentSelector.text = ""
-        periodPickerView.reloadAllComponents()
-        studentPickerView.reloadAllComponents()
-        periodPickerView.selectRow(0, inComponent: 0, animated: false)
+        selectedStudent = nil
         studentPickerView.selectRow(0, inComponent: 0, animated: false)
+
+        periodPickerView.selectRow(0, inComponent: 0, animated: false)
       
 
     }
