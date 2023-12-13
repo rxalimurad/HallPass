@@ -55,7 +55,9 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case 2: // download
-            showFilters()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showFilters()
+            }
             
             
             break;
@@ -68,27 +70,22 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
         let alert = UIAlertController(title: "Download Pdf", message: "Please Select an Option", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Current Month", style: .default , handler:{ (_) in
-            print("User clicked Current Month")
             self.downloadPDF(.currentMonth)
         }))
         
         alert.addAction(UIAlertAction(title: "Previous Month", style: .default , handler:{ (_) in
-            print("User clicked Previous Month")
             self.downloadPDF(.lastYear)
         }))
         
         alert.addAction(UIAlertAction(title: "Last 6 Months", style: .default , handler:{ (_) in
-            print("User clicked Last 6 Months")
             self.downloadPDF(.last6Month)
         }))
         
         alert.addAction(UIAlertAction(title: "This Year", style: .default, handler:{ (_) in
-            print("User clicked This Year")
             self.downloadPDF(.thisYear)
         }))
         
         alert.addAction(UIAlertAction(title: "Last Year", style: .default, handler:{ (_) in
-            print("User clicked Last Year")
             self.downloadPDF(.lastYear)
         }))
         

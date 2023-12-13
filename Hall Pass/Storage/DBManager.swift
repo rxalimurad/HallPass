@@ -9,6 +9,12 @@ import RealmSwift
 import Foundation
 
 class RealmManager {
+    init() {
+        
+        
+
+    }
+    
     static let shared = RealmManager()
     private let realm = try! Realm()
     private var notificationTokens: [NotificationToken] = []
@@ -67,7 +73,7 @@ class RealmManager {
             print("Error deleting student: \(error)")
         }
     }
-
+    
     // Function to add a student to a specific period
     func addStudentToPeriod(periodID: String, studentName: String) {
         if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
@@ -75,7 +81,6 @@ class RealmManager {
                 let newStudent = Student()
                 newStudent.studentName = studentName
                 period.students.append(newStudent)
-                // Add the student to the specified period
             }
         } else {
             print("Period not found")
@@ -90,10 +95,21 @@ class RealmManager {
     func getStudents(for periodID: String) -> List<Student>? {
         let realm = try! Realm()
         if let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) {
-            return period.students
+            let sortedStudents = period.students
+            let sortedArray = Array(sortedStudents) // Convert to Array
+            
+            let sortedList = List<Student>() // Create an empty List of Student objects
+
+            for student in sortedArray {
+                sortedList.append(student) // Add each student from the array to the List
+            }
+            
+            return sortedList
         }
         return nil
     }
+
+
     
     
     func startSession(student: Student, signOut: Date, period: Period) -> Session{
@@ -131,11 +147,32 @@ class RealmManager {
         let realm = try! Realm()
         return realm.object(ofType: Session.self, forPrimaryKey: sessionID)
     }
-
+    
     func getSessions() -> Results<Session>? {
         let realm = try! Realm()
         return realm.objects(Session.self)
+        
     }
+    
+    
+    func deleteAllPeriods() {
+        
+    }
+    func updatePeriodsOrder(from: Int, to: Int) {
+        let realm = try! Realm()
+        let existingPeriods = realm.objects(Period.self)
+        let periodsList = List<Period>()
+        periodsList.append(objectsIn: existingPeriods)
+        
+        periodsList.move(from: from, to: to)
+    }
+    func updateStudentOrder(period: String?, from: Int, to: Int) {
+        guard let period else { return }
+        let realm = try! Realm()
+        let studentList = getStudents(for: period)
+        studentList?.move(from: from, to: to)
+    }
+
 
 }
 

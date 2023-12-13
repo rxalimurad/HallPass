@@ -58,8 +58,9 @@ extension PasscodeKitVerify {
 
 	private func actionBiometric(_ success: Bool) {
 		if (success) {
-			delegate?.passcodeEnteredSuccessfully?()
-			dismiss(animated: true)
+            dismiss(animated: true) {
+                self.delegate?.passcodeEnteredSuccessfully?()
+            }
 		} else {
 			setupUI()
 			updateUI()
@@ -130,6 +131,7 @@ extension PasscodeKitVerify {
 
 		if (failedAttempts >= PasscodeKit.allowedFailedAttempts) {
 			delegate?.passcodeMaximumFailedAttempts?()
+            self.dismiss(animated: true)
 		}
 	}
 }

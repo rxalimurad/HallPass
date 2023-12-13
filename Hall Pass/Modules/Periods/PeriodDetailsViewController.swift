@@ -79,6 +79,15 @@ class PeriodDetailsViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
 
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return tableView.isEditing
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // Update the order of periods in your Realm without using an 'order' property
+        RealmManager.shared.updateStudentOrder(period: period?.id, from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
+    
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Delete"
     }

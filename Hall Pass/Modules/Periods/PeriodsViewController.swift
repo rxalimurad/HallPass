@@ -62,6 +62,17 @@ class PeriodsViewController: UIViewController {
 }
 
 extension PeriodsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return tableView.isEditing
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // Update the order of periods in your Realm without using an 'order' property
+        RealmManager.shared.updatePeriodsOrder(from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
+
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeriodCell", for: indexPath)
         
