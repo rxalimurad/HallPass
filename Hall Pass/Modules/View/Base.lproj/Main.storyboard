@@ -594,7 +594,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5b1-CP-DK9">
                                 <rect key="frame" x="0.0" y="74" width="430" height="824"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ViewSessionCell" rowHeight="275" id="zNm-B2-r5a" customClass="ViewSessionCell" customModule="Break_Tracker" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="390" height="275"/>
