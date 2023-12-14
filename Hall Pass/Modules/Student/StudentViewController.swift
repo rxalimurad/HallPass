@@ -159,7 +159,7 @@ extension StudentViewController: SignoutViewCallback {
         studentPickerView.selectRow(0, inComponent: 0, animated: false)
 
         periodPickerView.selectRow(0, inComponent: 0, animated: false)
-      
+        updateButtonStatus()
 
     }
 }
