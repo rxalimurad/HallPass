@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FE933222B2C1C70006B8A7A /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE933212B2C1C70006B8A7A /* Collection.swift */; };
+		5FE933242B2C25CB006B8A7A /* DateRangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE933232B2C25CB006B8A7A /* DateRangeViewController.swift */; };
 		AA89588C2B238CE400FA3B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA89588B2B238CE400FA3B22 /* AppDelegate.swift */; };
 		AA89588E2B238CE400FA3B22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA89588D2B238CE400FA3B22 /* SceneDelegate.swift */; };
 		AA8958902B238CE400FA3B22 /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA89588F2B238CE400FA3B22 /* StudentViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5FE933212B2C1C70006B8A7A /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		5FE933232B2C25CB006B8A7A /* DateRangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRangeViewController.swift; sourceTree = "<group>"; };
 		AA8958882B238CE400FA3B22 /* Break Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Break Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA89588B2B238CE400FA3B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA89588D2B238CE400FA3B22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 			children = (
 				FA9AE09A2B2778B100615DC0 /* Optional.swift */,
 				FA9AE0A12B27837700615DC0 /* Date.swift */,
+				5FE933212B2C1C70006B8A7A /* Collection.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */,
+				5FE933232B2C25CB006B8A7A /* DateRangeViewController.swift */,
 			);
 			path = Teachers;
 			sourceTree = "<group>";
@@ -336,6 +342,8 @@
 				FA9AE09D2B277E2A00615DC0 /* SignoutViewController.swift in Sources */,
 				FA846BFF2B27AE3D0017BEE7 /* PasscodeKit.swift in Sources */,
 				FA9AE0A02B2782E800615DC0 /* Constants.swift in Sources */,
+				5FE933222B2C1C70006B8A7A /* Collection.swift in Sources */,
+				5FE933242B2C25CB006B8A7A /* DateRangeViewController.swift in Sources */,
 				AA8958902B238CE400FA3B22 /* StudentViewController.swift in Sources */,
 				AA8958AB2B23914B00FA3B22 /* PeriodsViewController.swift in Sources */,
 				FA846BFE2B27AE3D0017BEE7 /* PasscodeKitCreate.swift in Sources */,

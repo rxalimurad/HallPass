@@ -16,9 +16,9 @@ enum Filters {
     case last6Month
     case thisYear
     case lastYear
+    case custom(fromDate: Date, toDate: Date)
 }
 class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocumentInteractionControllerDelegate {
-    var documentController: UIDocumentInteractionController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,34 +73,42 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
         let alert = UIAlertController(title: "Download Pdf", message: "Please Select an Option", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Current Week", style: .default , handler:{ (_) in
-            self.downloadPDF(.thisWeek)
+            Self.downloadPDF(.thisWeek, delegate: self)
         }))
         alert.addAction(UIAlertAction(title: "Last Week", style: .default , handler:{ (_) in
-            self.downloadPDF(.lastWeek)
+            Self.downloadPDF(.lastWeek, delegate: self)
         }))
         alert.addAction(UIAlertAction(title: "Last 2 Weeks", style: .default , handler:{ (_) in
-            self.downloadPDF(.last2Weeks)
+            Self.downloadPDF(.last2Weeks, delegate: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Current Month", style: .default , handler:{ (_) in
-            self.downloadPDF(.currentMonth)
+            Self.downloadPDF(.currentMonth, delegate: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Previous Month", style: .default , handler:{ (_) in
-            self.downloadPDF(.lastYear)
+            Self.downloadPDF(.lastMonth, delegate: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Last 6 Months", style: .default , handler:{ (_) in
-            self.downloadPDF(.last6Month)
+            Self.downloadPDF(.last6Month, delegate: self)
         }))
         
         alert.addAction(UIAlertAction(title: "This Year", style: .default, handler:{ (_) in
-            self.downloadPDF(.thisYear)
+            Self.downloadPDF(.thisYear, delegate: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Last Year", style: .default, handler:{ (_) in
-            self.downloadPDF(.lastYear)
+            Self.downloadPDF(.lastYear, delegate: self)
         }))
+        
+        alert.addAction(UIAlertAction(title: "Custom Date Range", style: .default, handler:{ (_) in
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: DateRangeViewController.self)) as! DateRangeViewController
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }))
+        
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
         
@@ -114,7 +122,7 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
     }
     
     
-    func downloadPDF(_ filter: Filters) {
+    class func downloadPDF(_ filter: Filters, delegate: UIDocumentInteractionControllerDelegate?) {
         var filteredSessions: [Session] = []
         
         if let sessions = RealmManager.shared.getSessions() {
@@ -134,9 +142,12 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
             case .lastMonth:
                 // Filter sessions for the last month
                 let currentDate = Date()
-                let calendar = Calendar.current
-                let startOfLastMonth = calendar.date(byAdding: DateComponents(month: -1), to: calendar.startOfDay(for: currentDate))!
-                let endOfLastMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfLastMonth)!
+                   let calendar = Calendar.current
+                   guard let startOfCurrentMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate)),
+                         let startOfLastMonth = calendar.date(byAdding: DateComponents(month: -1), to: startOfCurrentMonth),
+                         let endOfLastMonth = calendar.date(byAdding: DateComponents(day: -1), to: startOfCurrentMonth) else {
+                       return
+                   }
                 
                 filteredSessions = sessions.filter { session in
                     return session.signOut >= startOfLastMonth && session.signOut <= endOfLastMonth
@@ -192,8 +203,8 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
                 // Filter sessions for the last week
                 let currentDate = Date()
                 let calendar = Calendar.current
-                guard let startOfLastWeek = calendar.date(byAdding: .weekOfYear, value: -1, to: calendar.startOfDay(for: currentDate)),
-                      let endOfLastWeek = calendar.date(byAdding: .day, value: 6, to: startOfLastWeek) else {
+                guard let endOfLastWeek = calendar.date(byAdding: .weekOfYear, value: -1, to: currentDate),
+                      let startOfLastWeek = calendar.date(byAdding: .day, value: -6, to: endOfLastWeek) else {
                     return
                 }
                 
@@ -205,15 +216,19 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
                 // Filter sessions for the last 2 weeks
                 let currentDate = Date()
                 let calendar = Calendar.current
-                guard let startOfLast2Weeks = calendar.date(byAdding: .weekOfYear, value: -2, to: calendar.startOfDay(for: currentDate)),
-                      let endOfLast2Weeks = calendar.date(byAdding: .day, value: 13, to: startOfLast2Weeks) else {
+                guard let endOfLast2Weeks = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)),
+                      let startOfLast2Weeks = calendar.date(byAdding: .day, value: -13, to: endOfLast2Weeks) else {
                     return
                 }
                 
                 filteredSessions = sessions.filter { session in
-                    return session.signOut >= startOfLast2Weeks && session.signOut <= endOfLast2Weeks
+                    return session.signOut >= startOfLast2Weeks && session.signOut < endOfLast2Weeks
                 }
                 
+            case .custom(fromDate: let fromDate, toDate: let toDate):
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= fromDate && session.signOut <= toDate
+                }
             }
             
             
@@ -232,8 +247,8 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
         if let pdfData = PDFUtil.createPDF(groupedSessions: groupedSessions, appName: Bundle.main.infoDictionary?["CFBundleName"] as! String) {
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let pdfURL = documentsDirectory.appendingPathComponent("report.pdf")
-            documentController = UIDocumentInteractionController(url: pdfURL)
-            documentController.delegate = self
+            var documentController = UIDocumentInteractionController(url: pdfURL)
+            documentController.delegate = delegate
             documentController.presentPreview(animated: true)
             do {
                 try pdfData.write(to: pdfURL)

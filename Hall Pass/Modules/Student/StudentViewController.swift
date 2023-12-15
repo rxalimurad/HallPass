@@ -101,7 +101,7 @@ class StudentViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             selectedStudent = nil
             studentPickerView.selectRow(0, inComponent: 0, animated: false)
         } else {
-            selectedStudent = selectedPeriod?.students[row]
+            selectedStudent = selectedPeriod?.students[safe: row]
             self.studentSelector.text = selectedStudent?.studentName
         }
         updateButtonStatus()
