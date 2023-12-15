@@ -8,6 +8,9 @@
 import UIKit
 
 enum Filters {
+    case thisWeek
+    case lastWeek
+    case last2Weeks
     case currentMonth
     case lastMonth
     case last6Month
@@ -68,6 +71,16 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
     
     func showFilters() {
         let alert = UIAlertController(title: "Download Pdf", message: "Please Select an Option", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Current Week", style: .default , handler:{ (_) in
+            self.downloadPDF(.thisWeek)
+        }))
+        alert.addAction(UIAlertAction(title: "Last Week", style: .default , handler:{ (_) in
+            self.downloadPDF(.lastWeek)
+        }))
+        alert.addAction(UIAlertAction(title: "Last 2 Weeks", style: .default , handler:{ (_) in
+            self.downloadPDF(.last2Weeks)
+        }))
         
         alert.addAction(UIAlertAction(title: "Current Month", style: .default , handler:{ (_) in
             self.downloadPDF(.currentMonth)
@@ -162,7 +175,47 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
                 filteredSessions = sessions.filter { session in
                     return session.signOut >= startOfLastYear && session.signOut <= endOfLastYear
                 }
+            case .thisWeek:
+                // Filter sessions for the current week
+                let currentDate = Date()
+                let calendar = Calendar.current
+                guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)),
+                      let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) else {
+                    return
+                }
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfWeek && session.signOut <= endOfWeek
+                }
+
+            case .lastWeek:
+                // Filter sessions for the last week
+                let currentDate = Date()
+                let calendar = Calendar.current
+                guard let startOfLastWeek = calendar.date(byAdding: .weekOfYear, value: -1, to: calendar.startOfDay(for: currentDate)),
+                      let endOfLastWeek = calendar.date(byAdding: .day, value: 6, to: startOfLastWeek) else {
+                    return
+                }
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfLastWeek && session.signOut <= endOfLastWeek
+                }
+
+            case .last2Weeks:
+                // Filter sessions for the last 2 weeks
+                let currentDate = Date()
+                let calendar = Calendar.current
+                guard let startOfLast2Weeks = calendar.date(byAdding: .weekOfYear, value: -2, to: calendar.startOfDay(for: currentDate)),
+                      let endOfLast2Weeks = calendar.date(byAdding: .day, value: 13, to: startOfLast2Weeks) else {
+                    return
+                }
+                
+                filteredSessions = sessions.filter { session in
+                    return session.signOut >= startOfLast2Weeks && session.signOut <= endOfLast2Weeks
+                }
+                
             }
+            
             
             
         }
