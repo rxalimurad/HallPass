@@ -163,16 +163,30 @@ class RealmManager {
         let existingPeriods = realm.objects(Period.self)
         let periodsList = List<Period>()
         periodsList.append(objectsIn: existingPeriods)
-        
-        periodsList.move(from: from, to: to)
+        try! realm.write {
+            periodsList.move(from: from, to: to)
+        }
     }
-    func updateStudentOrder(period: String?, from: Int, to: Int) {
-        guard let period else { return }
-        let realm = try! Realm()
-        let studentList = getStudents(for: period)
-        studentList?.move(from: from, to: to)
+    func updateStudentOrder(periodID: String?, from: Int, to: Int) {
+        guard let periodID = periodID, let period = realm.object(ofType: Period.self, forPrimaryKey: periodID) else { return }
+
+        let studentList = period.students
+        try! realm.write {
+            studentList.move(from: from, to: to)
+        }
     }
 
 
+    func updateStudentName(student: Student, newName: String) {
+        try! realm.write {
+            student.studentName = newName
+        }
+    }
+
+    func updatePeriodName(period: Period, newName: String) {
+        try! realm.write {
+            period.periodName = newName
+        }
+    }
 }
 

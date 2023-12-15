@@ -37,6 +37,7 @@
 		FA9AE0A22B27837700615DC0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A12B27837700615DC0 /* Date.swift */; };
 		FA9AE0A42B278B9000615DC0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A32B278B9000615DC0 /* UserDefaults.swift */; };
 		FA9AE0A72B27918700615DC0 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */; };
+		FAA51CC12B2CC47E00A7C2AE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51CC02B2CC47E00A7C2AE /* AlertPresenter.swift */; };
 		FAE11F1E2B274EA000611033 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		FA9AE0A12B27837700615DC0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FA9AE0A32B278B9000615DC0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
+		FAA51CC02B2CC47E00A7C2AE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				FA846C042B27BD6E0017BEE7 /* PDFUtil.swift */,
+				FAA51CC02B2CC47E00A7C2AE /* AlertPresenter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				5FE933242B2C25CB006B8A7A /* DateRangeViewController.swift in Sources */,
 				AA8958902B238CE400FA3B22 /* StudentViewController.swift in Sources */,
 				AA8958AB2B23914B00FA3B22 /* PeriodsViewController.swift in Sources */,
+				FAA51CC12B2CC47E00A7C2AE /* AlertPresenter.swift in Sources */,
 				FA846BFE2B27AE3D0017BEE7 /* PasscodeKitCreate.swift in Sources */,
 				FA846BFD2B27AE3D0017BEE7 /* PasscodeKitChange.swift in Sources */,
 				FA846C012B27AE3D0017BEE7 /* PasscodeKitVerify.swift in Sources */,
