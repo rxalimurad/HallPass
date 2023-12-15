@@ -78,30 +78,30 @@ class TeacherViewController: UITableViewController, PasscodeKitDelegate, UIDocum
         alert.addAction(UIAlertAction(title: "Last Week", style: .default , handler:{ (_) in
             Self.downloadPDF(.lastWeek, delegate: self)
         }))
-        alert.addAction(UIAlertAction(title: "Last 2 Weeks", style: .default , handler:{ (_) in
-            Self.downloadPDF(.last2Weeks, delegate: self)
-        }))
+//        alert.addAction(UIAlertAction(title: "Last 2 Weeks", style: .default , handler:{ (_) in
+//            Self.downloadPDF(.last2Weeks, delegate: self)
+//        }))
         
         alert.addAction(UIAlertAction(title: "Current Month", style: .default , handler:{ (_) in
             Self.downloadPDF(.currentMonth, delegate: self)
         }))
         
-        alert.addAction(UIAlertAction(title: "Previous Month", style: .default , handler:{ (_) in
+        alert.addAction(UIAlertAction(title: "Last Month", style: .default , handler:{ (_) in
             Self.downloadPDF(.lastMonth, delegate: self)
         }))
-        
-        alert.addAction(UIAlertAction(title: "Last 6 Months", style: .default , handler:{ (_) in
-            Self.downloadPDF(.last6Month, delegate: self)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "This Year", style: .default, handler:{ (_) in
-            Self.downloadPDF(.thisYear, delegate: self)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Last Year", style: .default, handler:{ (_) in
-            Self.downloadPDF(.lastYear, delegate: self)
-        }))
-        
+//        
+//        alert.addAction(UIAlertAction(title: "Last 6 Months", style: .default , handler:{ (_) in
+//            Self.downloadPDF(.last6Month, delegate: self)
+//        }))
+//        
+//        alert.addAction(UIAlertAction(title: "This Year", style: .default, handler:{ (_) in
+//            Self.downloadPDF(.thisYear, delegate: self)
+//        }))
+//        
+//        alert.addAction(UIAlertAction(title: "Last Year", style: .default, handler:{ (_) in
+//            Self.downloadPDF(.lastYear, delegate: self)
+//        }))
+//        
         alert.addAction(UIAlertAction(title: "Custom Date Range", style: .default, handler:{ (_) in
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: DateRangeViewController.self)) as! DateRangeViewController
             vc.delegate = self
