@@ -39,6 +39,7 @@
 		FA9AE0A72B27918700615DC0 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */; };
 		FAA51CC12B2CC47E00A7C2AE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51CC02B2CC47E00A7C2AE /* AlertPresenter.swift */; };
 		FAE11F1E2B274EA000611033 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FAE11F1D2B274EA000611033 /* IQKeyboardManagerSwift */; };
+		FAE5FC7C2B2E37C400F2C647 /* EditSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5FC7B2B2E37C400F2C647 /* EditSessionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		FA9AE0A32B278B9000615DC0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		FA9AE0A62B27918700615DC0 /* TeacherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
 		FAA51CC02B2CC47E00A7C2AE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		FAE5FC7B2B2E37C400F2C647 /* EditSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSessionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			children = (
 				FA846BF02B279CA20017BEE7 /* ViewSessionsViewController.swift */,
 				FA846BF32B27A4080017BEE7 /* ViewSessionCell.swift */,
+				FAE5FC7B2B2E37C400F2C647 /* EditSessionViewController.swift */,
 			);
 			path = ViewSessions;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				AA8958AD2B23916700FA3B22 /* SettingsViewController.swift in Sources */,
 				FA46458D2B266721004C7483 /* Models.swift in Sources */,
 				FA46458F2B26676C004C7483 /* DBManager.swift in Sources */,
+				FAE5FC7C2B2E37C400F2C647 /* EditSessionViewController.swift in Sources */,
 				FA846BF42B27A4080017BEE7 /* ViewSessionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

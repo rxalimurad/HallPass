@@ -48,6 +48,33 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
         return groupedSessions[section].sessions.count
     }
     
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            let session = self.groupedSessions[indexPath.section].sessions[indexPath.row]
+            
+            RealmManager.shared.deleteSession(session: session)
+            self.reloadTV()
+            
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: EditSessionViewController.self)) as! EditSessionViewController
+            let session = self.groupedSessions[indexPath.section].sessions[indexPath.row]
+            vc.session = session
+            vc.delegate = self
+            self.present(vc, animated: true)
+            completionHandler(true)
+        }
+        
+        
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        swipeConfig.performsFirstActionWithFullSwipe = false
+        
+        return swipeConfig
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ViewSessionCell.self), for: indexPath) as! ViewSessionCell
         let session = groupedSessions[indexPath.section].sessions[indexPath.row]
@@ -64,4 +91,21 @@ class ViewSessionsViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: - UITableViewDelegate
     
     // Add UITableViewDelegate methods as needed
+}
+extension ViewSessionsViewController: EditSessionDelegate {
+    func reloadTV() {
+        if let sessions = RealmManager.shared.getSessions() {
+            // Group sessions by sign-out date
+            let groupedByDate = Dictionary(grouping: sessions, by: { $0.signOut.startOfDay })
+            
+            // Create GroupedSession objects and populate groupedSessions
+            groupedSessions = groupedByDate.map { (key, value) in
+                let sortedSessions = value.sorted(by: { $0.signOut > $1.signOut })
+                return GroupedSession(signOutDate: key, sessions: sortedSessions)
+            }.sorted(by: { $0.signOutDate > $1.signOutDate }) // Sort by sign-out date
+        }
+        self.tableView.reloadData()
+    }
+    
+    
 }

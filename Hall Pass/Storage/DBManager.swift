@@ -64,6 +64,15 @@ class RealmManager {
             // Handle case when the specified period is not found
         }
     }
+    func deleteSession(session: Session) {
+        do {
+            try realm.write {
+                realm.delete(session)
+            }
+        } catch {
+            print("Error deleting session: \(error)")
+        }
+    }
     func deleteStudent(student: Student) {
         do {
             try realm.write {
