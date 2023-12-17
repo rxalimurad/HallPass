@@ -85,7 +85,7 @@ class StudentViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         } else {
             if let periodId = selectedPeriod?.id {
                 if let students = RealmManager.shared.getStudents(for: periodId) {
-                    let student = students[row]
+                    let student = students[safe: row]
                     return NSAttributedString(string: student.studentName, attributes: [.foregroundColor: UIColor.accent])
                 }
             }
